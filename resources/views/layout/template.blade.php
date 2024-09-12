@@ -23,8 +23,6 @@
                 </a>
 
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <!-- User Menu omitted for brevity -->
-
                     <button data-collapse-toggle="navbar-user" type="button"
                         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="navbar-user" aria-expanded="false">
@@ -37,27 +35,27 @@
                     </button>
                 </div>
 
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+                {{-- Navbar Link --}}
+                <div class="items-center justify-center hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul
-                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border md:space-x-8 rtl:space-x-reverse w-full md:flex-row md:mt-0 md:border-0">
                         <li>
                             <a href="/"
                                 class="block py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
-                        md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
-                        md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
-                        active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500
-                        {{ request()->is('/') ? 'text-white font-bold' : 'text-gray-400' }}">
+                    md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
+                    md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
+                    active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500
+                    {{ request()->is('/') ? 'text-white font-bold' : 'text-gray-400' }}">
                                 Home
                             </a>
                         </li>
-                        <!-- Dropdown for Products -->
                         <li x-data="{ open: false }" class="relative">
                             <button @click="open = !open"
                                 class="block py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
-            md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
-            md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
-            active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500 flex items-center space-x-1
-            {{ request()->is('products/*') ? 'text-white font-bold' : 'text-gray-400' }}">
+                md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
+                md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
+                active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500 flex items-center space-x-1
+                {{ request()->is('products/*') ? 'text-white font-bold' : 'text-gray-400' }}">
                                 Products
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ms-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -97,14 +95,16 @@
                         <li>
                             <a href="/about"
                                 class="block py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
-                        md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent 
-                        dark:border-gray-700 hover:border-b-2 hover:border-gray-300 active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500
-                        {{ request()->is('about') ? 'text-white font-bold' : 'text-gray-400' }}">
+                    md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent 
+                    dark:border-gray-700 hover:border-b-2 hover:border-gray-300 active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500
+                    {{ request()->is('about') ? 'text-white font-bold' : 'text-gray-400' }}">
                                 About
                             </a>
                         </li>
                     </ul>
                 </div>
+
+                {{-- User Drop Down --}}
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button"
                         class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"

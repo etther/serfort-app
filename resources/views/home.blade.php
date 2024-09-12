@@ -76,18 +76,20 @@
     <!-- Product Types Section -->
     <div class="container mx-auto px-4 py-8">
         <h2 class="text-3xl font-bold text-center text-white mb-8">Products Type</h2>
-        @foreach ($productTypes as $productType)
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            @foreach ($productTypes as $productType)
                 <div
                     class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                     <div class="bg-gray-100 p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Case</h3>
+
+                        <h3 class="text-xl font-semibold mb-2">{{ $productType->name }}</h3>
                         <img src="{{ asset('storage/' . $productType->image_path) }}" alt="{{ $productType->name }}"
                             class="w-full h-auto">
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 
 
