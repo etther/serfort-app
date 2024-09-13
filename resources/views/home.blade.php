@@ -82,10 +82,12 @@
                 <div
                     class="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                     <div class="bg-gray-100 p-6 text-center">
+                        <a href="/motherboard-product">
+                            <h3 class="text-xl font-semibold mb-2">{{ $productType->name }}</h3>
 
-                        <h3 class="text-xl font-semibold mb-2">{{ $productType->name }}</h3>
-                        <img src="{{ asset('storage/' . $productType->image_path) }}" alt="{{ $productType->name }}"
-                            class="w-full h-auto">
+                            <img src="{{ asset('storage/' . $productType->image_path) }}" alt="{{ $productType->name }}"
+                                class="w-full h-auto">
+                        </a>
                     </div>
                 </div>
             @endforeach
