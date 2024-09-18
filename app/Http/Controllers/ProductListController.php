@@ -3,21 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductList;
+use App\Models\ProductType;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 class ProductListController extends Controller
 {
     // Display a listing of the products (READ)
-    public function index()
+    public function index($productTypeSlug)
     {
         try {
-            $products = ProductList::with('productType')->get();
-            return response()->json($products, 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while fetching products'], 500);
+            // Fetch product type by slug
+            $productType = ProductType::where('slug', $productTypeSlug)->firstOrFail();
+            $products = ProductList::where('product_type_id', $productType->id)->get();
+
+            // Create the dynamic view name based on product type
+            $productTypeName = Str::slug($productType->name, '_');
+
+            // You could handle specific cases here if necessary
+            $viewName = 'product.' . Str::slug($productType->name, '-') . '-product';
+
+            // Check if the view file exists
+            if (!view()->exists($viewName)) {
+                return response()->json(['error' => 'View for this product type does not exist'], 404);
+            }
+
+            // Render the view with product data
+            return view($viewName, [
+                'productType' => $productType,
+                'products' => $products,
+            ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            Log::error('ProductType not found: ' . $productTypeSlug);
+            return response()->json(['error' => 'Product type not found'], 404);
         }
     }
+
+
 
     // Show a single product by ID (READ)
     public function show($id)

@@ -10,6 +10,8 @@ class ProductList extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'price', 'product_type_id', 'image_path'];
+    protected $table = 'products';
+
 
     public function productType()
     {
