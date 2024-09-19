@@ -17,32 +17,32 @@ class ProductTypeSeeder extends Seeder
             [
                 'name' => 'Case Type',
                 'image_path' => '/product_types_images/case_type.png',
-                'slug' => Str::slug('Case Type'), // Generate slug
+                'slug' => Str::slug('Case Type'),
             ],
             [
                 'name' => 'Coolers Type',
                 'image_path' => '/product_types_images/coolers_type.png',
-                'slug' => Str::slug('Coolers Type'), // Generate slug
+                'slug' => Str::slug('Coolers Type'),
             ],
             [
                 'name' => 'GPU Type',
                 'image_path' => '/product_types_images/gpu_type.png',
-                'slug' => Str::slug('GPU Type'), // Generate slug
+                'slug' => Str::slug('GPU Type'),
             ],
             [
                 'name' => 'Memory Type',
                 'image_path' => '/product_types_images/memory_type.png',
-                'slug' => Str::slug('Memory Type'), // Generate slug
+                'slug' => Str::slug('Memory Type'),
             ],
             [
                 'name' => 'Motherboard Type',
                 'image_path' => '/product_types_images/motherboard_type.png',
-                'slug' => Str::slug('Motherboard Type'), // Generate slug
+                'slug' => Str::slug('Motherboard Type'),
             ],
             [
                 'name' => 'PSU Type',
                 'image_path' => '/product_types_images/psu_type.png',
-                'slug' => Str::slug('PSU Type'), // Generate slug
+                'slug' => Str::slug('PSU Type'),
             ]
         ]);
     }

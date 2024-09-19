@@ -60,6 +60,18 @@ class ProductListController extends Controller
         }
     }
 
+    public function create()
+    {
+        // Get all product types for the dropdown in the form
+        $productTypes = ProductType::all();
+
+        // Pass productTypes to the view
+        return view('product.create-product', [
+            'productTypes' => $productTypes,
+        ]);
+    }
+
+
     // Store a newly created product (CREATE)
     public function store(Request $request)
     {
@@ -68,7 +80,7 @@ class ProductListController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'product_type_id' => 'required|exists:product_types,id',
+            'product_type_id' => 'required|exists:product_types,id', // Ensure the product_type_id exists in the DB
             'image_path' => 'nullable|string',
             'image_base64' => 'nullable|string',
         ]);
@@ -83,8 +95,11 @@ class ProductListController extends Controller
 
             return response()->json($product, 201); // Return 201 status for resource creation
         } catch (\Exception $e) {
+            Log::error($e->getMessage()); // Log any errors
             return response()->json(['error' => 'An error occurred while creating the product'], 500);
         }
+        Log::info($request->all()); // Log all incoming data for debugging
+
     }
 
     // Update an existing product (UPDATE)
