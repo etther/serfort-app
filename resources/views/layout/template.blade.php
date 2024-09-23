@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -66,30 +70,12 @@
 
                             <div x-show="open" @click.away="open = false"
                                 class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg overflow-hidden dark:bg-gray-800">
-                                <a href="/products/product1"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    Case
-                                </a>
-                                <a href="/products/product2"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    CPU Cooler
-                                </a>
-                                <a href="/products/product3"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    GPU
-                                </a>
-                                <a href="/products/product3"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    Motherboard
-                                </a>
-                                <a href="/products/product3"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    Memory
-                                </a>
-                                <a href="/products/product3"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
-                                    PSU
-                                </a>
+                                @foreach ($productTypes as $productType)
+                                    <a href="{{ route('products.index', $productType->slug) }}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">
+                                        {{ str_replace(' Type', '', $productType->name) }}
+                                    </a>
+                                @endforeach
                             </div>
                         </li>
                         <li>

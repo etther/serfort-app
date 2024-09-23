@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row items-center justify-between p-6">
             <div class="text-left md:w-1/2 md:px-6">
-                <h3 class="text-2xl font-semibold mb-4">PSU</h3>
+                <h3 class="text-2xl font-semibold mb-4">GPU</h3>
                 <p class="text-gray-700">
                     At Serfort, we are proud to provide a wide range of high-performance graphics cards (GPUs) for both avid
                     gamers and professionals. Whether you're crafting an ultra-smooth gaming experience or working on

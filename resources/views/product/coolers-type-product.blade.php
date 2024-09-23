@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row items-center justify-between p-6">
             <div class="text-left md:w-1/2 md:px-6">
-                <h3 class="text-2xl font-semibold mb-4">PSU</h3>
+                <h3 class="text-2xl font-semibold mb-4">CPU Coolers</h3>
                 <p class="text-gray-700">
                     At Serfort, we take pride in offering top-tier CPU coolers engineered to keep your system cool and quiet
                     under pressure. Whether you're overclocking for peak performance or simply want efficient thermal

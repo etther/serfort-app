@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class ProductListController extends Controller
 {
-    // Display a listing of the products (READ)
+    // product (READ)
     public function index($productTypeSlug)
     {
         try {
@@ -80,27 +80,42 @@ class ProductListController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'product_type_id' => 'required|exists:product_types,id', // Ensure the product_type_id exists in the DB
-            'image_path' => 'nullable|string',
-            'image_base64' => 'nullable|string',
+            'product_type_id' => 'required|exists:product_types,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image
+            'image_base64' => 'nullable|string', // Optional base64 image
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422); // Validation error response
+            return response()->json(['errors' => $validator->errors()], 422);
         }
 
         try {
-            // Create the new product
-            $product = ProductList::create($validator->validated());
+            $data = $validator->validated();
 
-            return response()->json($product, 201); // Return 201 status for resource creation
+            // Handle file upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imagePath = $image->store('images', 'public'); // Store in storage/app/public/images
+                $data['image_path'] = $imagePath;
+            }
+
+            // Handle base64 image if available
+            if ($request->input('image_base64')) {
+                $data['image_base64'] = $request->input('image_base64');
+            }
+
+            // Create product with validated data
+            $product = ProductList::create($data);
+
+            return response()->json($product, 201);
         } catch (\Exception $e) {
-            Log::error($e->getMessage()); // Log any errors
+            Log::error($e->getMessage());
             return response()->json(['error' => 'An error occurred while creating the product'], 500);
         }
-        Log::info($request->all()); // Log all incoming data for debugging
-
     }
+
+
+
 
     // Update an existing product (UPDATE)
     public function update(Request $request, $id)

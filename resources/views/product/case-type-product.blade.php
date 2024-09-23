@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row items-center justify-between p-6">
             <div class="text-left md:w-1/2 md:px-6">
-                <h3 class="text-2xl font-semibold mb-4">PSU</h3>
+                <h3 class="text-2xl font-semibold mb-4">Case</h3>
                 <p class="text-gray-700">
                     At Serfort, we offer an extensive selection of premium PC cases designed for builders of all levels.
                     Whether you're aiming for a sleek, minimalist design or a feature-packed, customizable setup, our cases
