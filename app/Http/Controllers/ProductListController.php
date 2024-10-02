@@ -16,22 +16,19 @@ class ProductListController extends Controller
     public function index($productTypeSlug)
     {
         try {
-            // Fetch product type by slug
+
             $productType = ProductType::where('slug', $productTypeSlug)->firstOrFail();
             $products = ProductList::where('product_type_id', $productType->id)->get();
 
-            // Create the dynamic view name based on product type
             $productTypeName = Str::slug($productType->name, '_');
 
-            // You could handle specific cases here if necessary
             $viewName = 'product.' . Str::slug($productType->name, '-') . '-product';
 
-            // Check if the view file exists
+
             if (!view()->exists($viewName)) {
                 return response()->json(['error' => 'View for this product type does not exist'], 404);
             }
 
-            // Render the view with product data
             return view($viewName, [
                 'productType' => $productType,
                 'products' => $products,
@@ -42,6 +39,24 @@ class ProductListController extends Controller
         }
     }
 
+    public function table($productTypeSlug)
+    {
+        try {
+            // Find the ProductType by its slug
+            $productType = ProductType::where('slug', $productTypeSlug)->firstOrFail();
+
+            // Get all products for this product type
+            $products = ProductList::where('product_type_id', $productType->id)->get();
+
+            // Render the product table view
+            return view('product.products-table', [
+                'productType' => $productType,
+                'products' => $products,
+            ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['error' => 'Product type not found'], 404);
+        }
+    }
 
 
     // Show a single product by ID (READ)
@@ -114,14 +129,28 @@ class ProductListController extends Controller
         }
     }
 
-
-
-
-    // Update an existing product (UPDATE)
-    public function update(Request $request, $id)
+    public function edit($productTypeSlug, $productId)
     {
         try {
-            $product = ProductList::find($id);
+            $productType = ProductType::where('slug', $productTypeSlug)->firstOrFail();
+            $product = ProductList::findOrFail($productId);
+            $productTypes = ProductType::all();
+
+            return view('product.products-edit', [
+                'product' => $product,
+                'productTypes' => $productTypes,
+                'productType' => $productType,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+    }
+
+    // Update an existing product (UPDATE)
+    public function update(Request $request, $productTypeSlug, $productId)
+    {
+        try {
+            $product = ProductList::find($productId);
 
             if (!$product) {
                 return response()->json(['message' => 'Product not found'], 404);
@@ -150,11 +179,12 @@ class ProductListController extends Controller
         }
     }
 
+
     // Remove the specified product (DELETE)
-    public function destroy($id)
+    public function destroy($productTypeSlug, $productId)
     {
         try {
-            $product = ProductList::find($id);
+            $product = ProductList::find($productId);
 
             if (!$product) {
                 return response()->json(['message' => 'Product not found'], 404);

@@ -47,7 +47,7 @@
                             <a href="/"
                                 class="block py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
                     md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
-                    md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
+                    md:dark:hover:bg-transparent dardk:border-gray-700 hover:border-b-2 hover:border-gray-300 
                     active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500
                     {{ request()->is('/') ? 'text-white font-bold' : 'text-gray-400' }}">
                                 Home
@@ -97,8 +97,7 @@
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg"
-                            alt="user photo">
+                        <img class="w-8 h-8 rounded-full" src="/profile/profile.png" alt="user photo">
                     </button>
                     <!-- Dropdown menu -->
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -147,7 +146,7 @@
                         <a href="#" class="hover:underline me-4 md:me-6">About</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                        <a href="#" class="hover:underline me-4 md:me-6">Privacy</a>
                     </li>
                     <li>
                         <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>

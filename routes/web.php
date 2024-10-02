@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Route;
 // Home Page
 Route::get('/', [ProductTypeController::class, 'index'])->name('home');
 
-// Product Type Route
+// Product Route
 Route::get('/products/create', [ProductListController::class, 'create'])->name('products.create');
 Route::get('/products/{productTypeSlug}', [ProductListController::class, 'index'])->name('products.index');
+Route::get('/products/{productTypeSlug}/table', [ProductListController::class, 'table'])->name('products.table');
 Route::post('/products', [ProductListController::class, 'store'])->name('products.store');
-Route::get('/products/{productType}/{productId}/edit', [ProductListController::class, 'edit'])->name('products.edit');
-Route::put('/products/{productType}/{productId}', [ProductListController::class, 'update'])->name('products.update');
-Route::delete('/products/{productType}/{productId}', [ProductListController::class, 'destroy'])->name('products.destroy');
+Route::get('/products/{productTypeSlug}/{productId}/edit', [ProductListController::class, 'edit'])->name('products.edit');
+Route::put('/products/{productTypeSlug}/{productId}', [ProductListController::class, 'update'])->name('products.update');
+Route::delete('/products/{productTypeSlug}/{productId}', [ProductListController::class, 'destroy'])->name('products.destroy');
