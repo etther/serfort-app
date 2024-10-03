@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 // Home Page
 Route::get('/', [ProductTypeController::class, 'index'])->name('home');
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 // Product Route
 Route::get('/products/create', [ProductListController::class, 'create'])->name('products.create');

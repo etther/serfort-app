@@ -55,7 +55,7 @@
                         </li>
                         <li x-data="{ open: false }" class="relative">
                             <button @click="open = !open"
-                                class="block py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
+                                class="py-2 px-3 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 
                 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white 
                 md:dark:hover:bg-transparent dark:border-gray-700 hover:border-b-2 hover:border-gray-300 
                 active:border-b-2 active:border-gray-500 focus:border-b-2 focus:border-blue-500 flex items-center space-x-1
